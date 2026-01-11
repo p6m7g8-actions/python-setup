@@ -22,8 +22,8 @@ runs:
         set +e
         which python
         which pip
-        python -v
-        pip -v
+        python -V
+        pip -V
         echo $PATH
 
     - name: Install uv
@@ -41,7 +41,7 @@ runs:
           which uv
           uv --version
           uv run which python
-          uv run python -v
+          uv run python -V
         fi
 
     - name: Install deps
