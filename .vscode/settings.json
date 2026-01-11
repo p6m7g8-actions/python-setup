@@ -31,6 +31,7 @@
     "*.yaml": "default"
   },
   "cSpell.words": [
+    "Gollucci"
   ],
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
