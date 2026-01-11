@@ -1,0 +1,51 @@
+name: "P6 GHA: Setups Python"
+description: "P6 GHA: Setups Python"
+author: "Philip M. Gollucci"
+
+inputs:
+  python-version:
+    description: "Python version to install (e.g., 3.14.2)"
+    required: false
+    default: "3.14.2"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install Python
+      uses actions/setup-python@v6.0.1
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Check Python
+      shell: bash
+      run: |
+        set +e
+        which python
+        which pip
+        python -v
+        pip -v
+        echo $PATH
+
+    - name: Install uv
+      shell: bash
+      run: |
+        if [ -e uv.lock ]; then
+          pip install uv
+        fi
+
+    - name: Check uv
+      shell: bash
+      run: |
+        set +e
+        which uv
+        uv --version
+        which python
+        python -V
+        echo $PATH
+
+    - name: Install deps
+      shell: bash
+      run: |
+        if [ -e uv.lock ]; then
+          uv sync --dev
+        fi
