@@ -36,12 +36,13 @@ runs:
     - name: Check uv
       shell: bash
       run: |
-        set +e
-        which uv
-        uv --version
-        which python
-        python -V
-        echo $PATH
+        if [ -e uv.lock ]; then
+          set +e
+          which uv
+          uv --version
+          uv run which python
+          uv run python -v
+        fi
 
     - name: Install deps
       shell: bash
