@@ -9,5 +9,5 @@
     - name: Python
       uses: p6m7g8-actions/python-setup@main
       with:
-        python-version: 3.14.2
+        python-version: 3.14.3
 ```

@@ -4,9 +4,9 @@ author: "Philip M. Gollucci"
 
 inputs:
   python-version:
-    description: "Python version to install (e.g., 3.14.2)"
+    description: "Python version to install (e.g., 3.14.3)"
     required: false
-    default: "3.14.2"
+    default: "3.14.3"
 
 runs:
   using: "composite"
