@@ -24,13 +24,19 @@ runs:
         which pip
         python -V
         pip -V
-        echo $PATH
+        echo "$PATH"
 
     - name: Install uv
       shell: bash
       run: |
         if [ -e uv.lock ]; then
           pip install uv
+        else
+          echo "::warning title=No uv.lock found::No uv.lock in $(pwd); skipping uv and dependency install."
+          echo "python-setup installed Python only; no project dependencies were installed."
+          echo "If you expected dependencies to be installed:"
+          echo "  * check out the repository before this action runs, and"
+          echo "  * commit a uv.lock (generate one with 'uv lock')."
         fi
 
     - name: Check uv
@@ -42,6 +48,8 @@ runs:
           uv --version
           uv run which python
           uv run python -V
+        else
+          echo "Skipping uv checks: no uv.lock (see the warning above)."
         fi
 
     - name: Install deps
@@ -49,4 +57,6 @@ runs:
       run: |
         if [ -e uv.lock ]; then
           uv sync --dev
+        else
+          echo "Skipping 'uv sync --dev': no uv.lock (see the warning above)."
         fi
