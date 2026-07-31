@@ -7,7 +7,7 @@
 
 ```yml
     - name: Python
-      uses: p6m7g8-actions/python-setup@main
+      uses: p6m7g8-actions/p6-python-setup@main
       with:
         python-version: 3.14.3
 ```
